@@ -1,7 +1,7 @@
 # bigwhite's astyle options file
 
 --indent=spaces=4
---brackets=attach
+--brackets=linux
 --indent-switches
 --indent-cases
 --indent-labels
