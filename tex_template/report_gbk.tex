@@ -1,38 +1,82 @@
 %
 % TeX模板
 %
-% 中文支持方案: xelatex + xeCJK
+% 中文支持方案: XeTeX + xeCJK
 % author: Tony Bai
 %
 
-\documentclass{report}
-\usepackage{xeCJK}
+%
+% preamble begin {
+%
 
-\usepackage{titlesec}                % 控制标题
-%\usepackage{booktabs}                % 控制表格样式
-\usepackage{titletoc}                % 控制目录
+\documentclass[a4paper,12pt,titlepage]{book}                % 小四号字
 
-\XeTeXinputencoding "GBK"
-\setmainfont{SimSun}
+\XeTeXinputencoding "GBK"                                   % 本文件采用GBK编码
+
+\usepackage{fontspec}
+\usepackage{xunicode} 
+
+\usepackage{titletoc}                                       % 控制目录
+\usepackage{appendix}                                       % 控制附录
+
+% 页边距设置
+\usepackage[top=1.2in,bottom=1.2in,left=1.2in,right=1in]{geometry}
+
+% 封面设置
+\usepackage{xltxtra}                                        % xltxtra include the cmd \XeTeX
+\title{\XeTeX\ 日常使用模板\\（基于GBK编码）}
+\author{著：Tony Bai\\
+        译：Tony Bai}
+\date{October, 2010}
+
+% 页眉页脚设置
+\usepackage{fancyhdr}                                       % 控制页眉页脚
+\pagestyle{plain}                                           % 页眉页脚风格
+
+% 章节设置
+\usepackage{titlesec} 
+\titleformat{\chapter}{\centering\huge}{第\thechapter{}章}{1em}{\textbf}
+
+% xeCJK设置
+\usepackage[slantfont, boldfont, CJKaddspaces]{xeCJK}
+\setmainfont{WenQuanYi Micro Hei}                           % view the font list through the cmd "fc-list :lang=zh"
+
+% 重定义设置
+\renewcommand{\contentsname}{目~录}
+\renewcommand{\indexname}{索引}
+\renewcommand{\listfigurename}{插图目录}
+\renewcommand{\listtablename}{表格目录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\appendixname}{附录}
+\renewcommand{\appendixpagename}{附录}
+\renewcommand{\appendixtocname}{附录}
+%\renewcommand\refname{参考文献}
+
+%
+% } preamble end
+%
 
 
-\title{Haskell程序设计}
-\author{原著：Tony Bai\\
-        翻译：白 明}
-\date{\today}
+%
+% body begin {
+%
 
 \begin{document}
 
-%%%%设置chapter、section与subsection的格式%%%%
-\titleformat{\chapter}{\centering\huge}{第\thechapter{}篇}{1em}{\textbf}
-\maketitle
-\tableofcontents
-This is the first experience of \LaTeX.
+\maketitle                                                  % 生成title
+
+\chapter*{序}
+\addcontentsline{toc}{chapter}{序}
+
+Haskell是一门函数式语言。
+
+\tableofcontents                                            % 生成目录
+\setcounter{tocdepth}{3}                                    % 设置目录深度
 
 \chapter{简介}
-Haskell是一门函数式语言。
-\section{函数}
 
+\section{函数}
 在Haskell中，一个函数是一个映射。
 
 \section{函数式编程}
@@ -43,3 +87,6 @@ Haskell是一门函数式语言。
 
 \end{document}
 
+%
+% } body end
+%
