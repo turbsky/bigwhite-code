@@ -17,6 +17,7 @@
 \usepackage{xltxtra}
 
 \usepackage{beamerthemesplit}
+\usepackage{hyperref}
 
 % xeCJK…Ë÷√
 \usepackage[slantfont, boldfont, CJKaddspaces]{xeCJK}
@@ -36,40 +37,18 @@
 
 \begin{document}
 
-\frame{\titlepage}
-\section{¥Û∏Ÿ}
+\begin{frame}
+\titlepage
+\end{frame}
 
-\frame{\tableofcontents}
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
 
-\section{ΩÈ…‹}
-\subsection{What} 
-\subsection{Why}
-
-\frame {
-   \frametitle{XX}
-   \begin{itemize}
-       \item<1-> xx-1
-       \item<2-> xx-2
-       \item<3-> xx-3
-   \end{itemize}
-   %\XeTeXpicfile "./screenshot1.png" xscaled 100 yscaled 100
-        % The [options] in the \XeTeXpicfile command use the following
-        % keywords:
-        % width <dimen>
-        % height <dimen>
-        % scaled <scalefactor>
-        % xscaled <scalefactor>
-        % yscaled <scalefactor>
-        % rotated <degrees>
-}
-
-\frame {
-   \frametitle{YY}
-   \begin{itemize}
-       \item<1-> yy-1
-       \item<2-> yy-2
-       \item<3-> yy-3
-   \end{itemize}
-}
+\begin{frame}
+\frametitle{first slide}
+This is the first slide using \XeTeX~and beamer.
+\end{frame}
 
 \end{document}
