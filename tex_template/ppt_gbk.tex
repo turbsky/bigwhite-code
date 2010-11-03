@@ -1,0 +1,75 @@
+%
+% PPT TeX模板
+%
+% 中文支持方案: XeTeX + xeCJK
+% author: Tony Bai
+% 
+% compile: 
+%     xelatex ppt_gbk.tex
+%
+
+\documentclass{beamer}
+
+\XeTeXinputencoding "GBK"
+
+\usepackage{fontspec}                           % for XeTeX
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+\usepackage{beamerthemesplit}
+
+% xeCJK设置
+\usepackage[slantfont, boldfont, CJKaddspaces]{xeCJK}
+\setmainfont{Times New Roman}                  % view the font list through the cmd "fc-list :lang=en"
+\setCJKmainfont{SimSun}                        % view the font list through the cmd "fc-list :lang=zh"
+\setCJKfamilyfont{song}{SimSun}
+\setsansfont{AR PL UKai CN}
+
+\XeTeXlinebreaklocale "zh"  
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\usetheme{boxes}
+
+\title{\XeTeX~PPT模板\\采用GBK编码}
+\author{Tony Bai\footnote{\url{http://bigwhite.blogbus.com}}}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+\section{大纲}
+
+\frame{\tableofcontents}
+
+\section{介绍}
+\subsection{What} 
+\subsection{Why}
+
+\frame {
+   \frametitle{XX}
+   \begin{itemize}
+       \item<1-> xx-1
+       \item<2-> xx-2
+       \item<3-> xx-3
+   \end{itemize}
+   %\XeTeXpicfile "./screenshot1.png" xscaled 100 yscaled 100
+        % The [options] in the \XeTeXpicfile command use the following
+        % keywords:
+        % width <dimen>
+        % height <dimen>
+        % scaled <scalefactor>
+        % xscaled <scalefactor>
+        % yscaled <scalefactor>
+        % rotated <degrees>
+}
+
+\frame {
+   \frametitle{YY}
+   \begin{itemize}
+       \item<1-> yy-1
+       \item<2-> yy-2
+       \item<3-> yy-3
+   \end{itemize}
+}
+
+\end{document}
