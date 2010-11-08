@@ -16,7 +16,7 @@
 \usepackage{xunicode}
 \usepackage{xltxtra}
 
-\usepackage{beamerthemesplit}
+%\usepackage{beamerthemesplit}
 \usepackage{hyperref}
 
 % xeCJKÉèÖÃ
@@ -48,12 +48,24 @@
 
 \begin{frame}
 \frametitle{first slide}
+\framesubtitle{usage of itemize}
     This is the first slide using \XeTeX~and beamer.
     \begin{itemize}
         \item<1-> xx
         \item<2-> yy
         \item<3-> zz
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{second slide}
+\framesubtitle{usage of enumerate}
+    This is the second slide.
+    \begin{enumerate}
+        \item<1-> xx
+        \item<2-> yy
+        \item<3-> zz
+    \end{enumerate}
 \end{frame}
 
 \end{document}
