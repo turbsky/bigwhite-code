@@ -60,10 +60,17 @@
 
 % xeCJK设置
 \usepackage[slantfont, boldfont, CJKaddspaces]{xeCJK}
-\setmainfont{Times New Roman}                                % view the font list through the cmd "fc-list :lang=en"
-\setCJKmainfont{SimSun}                                      % view the font list through the cmd "fc-list :lang=zh"
-\setCJKfamilyfont{song}{SimSun}
-\setsansfont{AR PL UKai CN}
+
+% view the font list through the cmd "fc-list :lang=en"
+\setmainfont{Times New Roman}                               % for normal and italic en
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+% view the font list through the cmd "fc-list :lang=zh"
+\setCJKmainfont{WenQuanYi Micro Hei}
+\setCJKsansfont{WenQuanYi Micro Hei}
+\setCJKmonofont{WenQuanYi Micro Hei}
+%\setCJKfamilyfont{song}{WenQuanYi Micro Hei}
 
 % 重定义设置
 \renewcommand{\chaptername}{第{\thechapter}章}
@@ -79,7 +86,26 @@
 %\renewcommand\refname{参考文献}
 
 \usepackage[fleqn]{amsmath}                                 % 公式居左
+\usepackage{listings}                                       % 用于在文档中插入源代码
 
+\lstset{ language={[ANSI]C},
+         showspaces=false,
+         showtabs=false,
+         tabsize=4,
+         frame=single,
+         framerule=1pt,
+         framexleftmargin=5mm,
+         framexrightmargin=5mm,
+         framextopmargin=5mm,
+         framexbottommargin=5mm,
+         %numbers=left,
+         %numberstyle=\small,
+         basicstyle=\tt,
+         directivestyle=\tt,
+         identifierstyle=\tt,
+         commentstyle=\tt,
+         stringstyle=\tt,
+         keywordstyle=\color{blue}\tt }
 %
 % } preamble end
 %
