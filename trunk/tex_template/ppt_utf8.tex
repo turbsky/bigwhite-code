@@ -18,6 +18,26 @@
 
 %\usepackage{beamerthemesplit}
 \usepackage{hyperref}
+\usepackage{listings}
+
+\lstset{ language={[ANSI]C},
+         showspaces=false,
+         showtabs=false,
+         tabsize=4,
+         frame=single,
+         %framerule=1pt,
+         framexleftmargin=5mm,
+         framexrightmargin=5mm,
+         framextopmargin=5mm,
+         framexbottommargin=5mm,
+         %numbers=left,
+         %numberstyle=\small,
+         basicstyle=\tt\tiny,
+         directivestyle=\tt\tiny,
+         identifierstyle=\tt\tiny,
+         commentstyle=\tt\tiny,
+         stringstyle=\tt\tiny,
+         keywordstyle=\color{blue}\tt\tiny }
 
 % xeCJK设置
 \usepackage[slantfont, boldfont, CJKaddspaces]{xeCJK}
@@ -38,8 +58,8 @@
 
 \usetheme{boxes}
 
-\title{\XeTeX~PPT模板\\采用GBK编码}
-\author{Tony Bai\footnote{\url{http://bigwhite.blogbus.com}}}
+\title{\XeTeX~PPT模板}
+\author{Tony Bai \footnote{\url{http://bigwhite.blogbus.com}}}
 \date{\today}
 
 \begin{document}
@@ -86,4 +106,22 @@
         The advantage is that if you know LaTeX, you can use your knowledge of LaTeX also when creating a presentation, not only when writing papers.
     \end{block}
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{fourth frame}
+\framesubtitle{在ppt中插入源代码}
+\begin{center}
+\begin{lstlisting}[caption={An Example}]
+    int a[10] = {[0] = 1, [4] = 14, [7] = 17};
+    struct foo_struct s = {.a = 13, .b = "hello"};
+    struct foo_struct fa[3] = {[0] = {.a = 12,
+                                      .b= "hello", 
+                                      .c = 1.4},
+                               [2] = {.a = 13, 
+                                      .b = "world"}
+                              };
+\end{lstlisting}
+\end{center}
+\end{frame}
+
 \end{document}
