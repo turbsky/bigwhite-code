@@ -63,6 +63,6 @@ USERNAME=${user:-}
 PASSWD=${passwd:-}
 
 svn diff -r$start_revision:$end_revision $target $USERNAME $PASSWD > $TEMPFILE
-add_lines_count=`grep "^+" $TEMPFILE|grep -v "^+++"|sed 's/^.//'|sed '/^$/d'|wc -l`
+add_lines_count=`grep "^+" $TEMPFILE|grep -v "^+++"|sed 's/^.//'|sed '/^\s*$/d'|wc -l`
 rm -fr $TEMPFILE
 echo "the actually incremental source code lines = $add_lines_count"
