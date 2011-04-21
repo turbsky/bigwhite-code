@@ -1,10 +1,10 @@
 # bigwhite's astyle options file
 
 --indent=spaces=4
---brackets=linux
+--brackets=attach
+# --brackets=linux
 --indent-switches
 --indent-cases
---indent-labels
 --indent-preprocessor
 --indent-col1-comments
 --pad-oper
@@ -15,5 +15,4 @@
 --align-pointer=name
 --mode=c
 --min-conditional-indent=0
-
 
