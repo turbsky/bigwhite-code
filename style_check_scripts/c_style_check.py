@@ -134,14 +134,19 @@ def check_file(filename):
 
 usage = "usage: c_style_check filename1 [filename2 ...]"
 
-if len(sys.argv) < 2:
-    print usage
-    #raise SystemExit
-    os._exit(os.EX_USAGE)
+def main():
+    if len(sys.argv) < 2:
+        print usage
+        #raise SystemExit
+        os._exit(os.EX_USAGE)
+    
+    for filename in sys.argv[1:]:
+        check_result = check_file(filename)
+        if check_result == ERROR:
+            os._exit(os.EX_DATAERR)
+        else:
+            os._exit(os.EX_OK)
+            
+if __name__ == '__main__':
+    main()
 
-for filename in sys.argv[1:]:
-    check_result = check_file(filename)
-    if check_result == ERROR:
-        os._exit(os.EX_DATAERR)
-    else:
-        os._exit(os.EX_OK)
