@@ -144,8 +144,9 @@ def main():
         check_result = check_file(filename)
         if check_result == ERROR:
             os._exit(os.EX_DATAERR)
-        else:
-            os._exit(os.EX_OK)
+
+    os._exit(os.EX_OK)
+
             
 if __name__ == '__main__':
     main()
