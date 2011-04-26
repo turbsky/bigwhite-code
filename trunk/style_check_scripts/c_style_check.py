@@ -68,7 +68,7 @@ def check_line(filename, line, n):
         if not comment_line.search(line):
             print "File: %s, line %d: [PUT SPACE AROUND OPERATORS]:\n%s" % \
                   (filename, n, line)
-        err_cnt = err_cnt + 1
+            err_cnt = err_cnt + 1
 
     # 我们希望/* Comments */而不是/*Comments*/
     if open_comment_space.search(line):
@@ -141,9 +141,13 @@ def main():
         os._exit(os.EX_USAGE)
     
     for filename in sys.argv[1:]:
+        print "=====> checking file: %s" % filename
         check_result = check_file(filename)
         if check_result == ERROR:
+            print "=====> checking file: %s Error!" % filename
             os._exit(os.EX_DATAERR)
+        else:
+            print "=====> checking file: %s OK" % filename
 
     os._exit(os.EX_OK)
 
