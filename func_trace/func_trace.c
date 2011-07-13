@@ -37,7 +37,7 @@ void __cyg_profile_func_enter(void *this_fn, void *call_site) {
 
     if ((ptr = popen(cmd, "r")) != NULL) {
         fgets(buf, PATH_MAX, ptr);
-        printf("enter func %s", buf);
+        printf("enter func => 0x%p:%s", this_fn, buf);
     }
 
     (void) pclose(ptr);
@@ -57,7 +57,7 @@ void __cyg_profile_func_exit(void *this_fn, void *call_site) {
 
     if ((ptr = popen(cmd, "r")) != NULL) {
         fgets(buf, PATH_MAX, ptr);
-        printf("exit func %s", buf);
+        printf("exit func <= 0x%p:%s", this_fn, buf);
     }
 
     (void) pclose(ptr);
