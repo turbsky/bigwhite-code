@@ -11,7 +11,6 @@ ifeq ($(OS), SunOS)
 	LIBS += -lfunc_trace
 else ifeq ($(OS), Linux)
 	DEFS = -D_LINUX_TRACE
-	CFLAGS = -rdynamic
 else
 	$(error $(OS) is not supported!)
 endif
