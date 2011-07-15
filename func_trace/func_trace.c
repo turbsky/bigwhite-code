@@ -31,14 +31,17 @@ void __cyg_profile_func_enter(void *this_fn, void *call_site) {
     memset(buf, 0, sizeof(buf));
     memset(cmd, 0, sizeof(cmd));
 
-    sprintf(cmd, "addr2line %p -e %s -f|head -1", this_fn, path);
+    sprintf(cmd, "addr2line %p -e %s -f", this_fn, path);
 
     FILE *ptr = NULL;
     memset(buf, 0, sizeof(buf));
 
     if ((ptr = popen(cmd, "r")) != NULL) {
         fgets(buf, PATH_MAX, ptr);
-        printf("enter func => %p:%s", this_fn, buf);
+        buf[strlen(buf) - 1] = '\0';
+        printf("enter func => %p:%s:", this_fn, buf);
+        fgets(buf, PATH_MAX, ptr); /* filename and lineno */
+        printf("%s\n", buf);
     }
 
     (void) pclose(ptr);
@@ -52,14 +55,17 @@ void __cyg_profile_func_exit(void *this_fn, void *call_site) {
     memset(buf, 0, sizeof(buf));
     memset(cmd, 0, sizeof(cmd));
 
-    sprintf(cmd, "addr2line %p -e %s -f|head -1", this_fn, path);
+    sprintf(cmd, "addr2line %p -e %s -f", this_fn, path);
 
     FILE *ptr = NULL;
     memset(buf, 0, sizeof(buf));
 
     if ((ptr = popen(cmd, "r")) != NULL) {
         fgets(buf, PATH_MAX, ptr);
-        printf("exit func <= %p:%s", this_fn, buf);
+        buf[strlen(buf) - 1] = '\0';
+        printf("exit func <= %p:%s:", this_fn, buf);
+        fgets(buf, PATH_MAX, ptr); /* filename and lineno */
+        printf("%s\n", buf);
     }
 
     (void) pclose(ptr);
