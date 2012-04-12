@@ -22,14 +22,14 @@ ERROR = -1
 #
 
 tabs                = re.compile(r"\t+")
-comma_space         = re.compile(",[^ ]")
+comma_space         = re.compile(",[^\n\r ]")
 
 # This one is really tough to get right, so we settle for catching the
 # most common mistakes.  Add other operators as necessary and/or feasible.
 operator_space      = re.compile("(\w(\+|\-|\*|\<|\>|\=)\w)" + \
                                  "|(\w(\=\=|\<\=|\>\=)\w)")
 comment_line        = re.compile("^\s*\/\*.*\*\/\s*$")
-open_comment_space  = re.compile("\/\*[^ *\n]")
+open_comment_space  = re.compile("\/\*[^ *\n\r]")
 close_comment_space = re.compile("[^ *]\*\/")
 paren_curly_space   = re.compile("\)\{")
 space_before_paren  = re.compile("if\(|while\(|for\(")
