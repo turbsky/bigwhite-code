@@ -13,7 +13,7 @@ import sys, string, re, os
 # Constants.
 #
 
-MAX_LINE_LENGTH = 90   # default: 78
+MAX_LINE_LENGTH = 190   # default: 78
 OK = 0
 ERROR = -1 
 
@@ -35,7 +35,6 @@ paren_curly_space   = re.compile("\)\{")
 space_before_paren  = re.compile("if\(|while\(|for\(")
 c_plus_plus_comment = re.compile("\/\/")
 semi_space          = re.compile(";[^ \s]")
-
 
 def check_line(filename, line, n):
     """
@@ -59,16 +58,25 @@ def check_line(filename, line, n):
 
     # 要求所有逗号后面必须有空格，包括注释里的内容
     if comma_space.search(line):
-        print "File: %s, line %d: [PUT SPACE AFTER COMMA]:\n%s" % \
-              (filename, n, line)
-        err_cnt = err_cnt + 1
+        if not comment_line.search(line):
+            print "File: %s, line %d: [PUT SPACE AFTER COMMA]:\n%s" % \
+                  (filename, n, line)
+            err_cnt = err_cnt + 1
 
     # 要求在常见操作符(比如+,-,*,/,>,<等)两侧要添加空格
     if operator_space.search(line):
         if not comment_line.search(line):
-            print "File: %s, line %d: [PUT SPACE AROUND OPERATORS]:\n%s" % \
-                  (filename, n, line)
-            err_cnt = err_cnt + 1
+            # 排除字符串内有类似"mpiag-smsc.fifo"这样的字符串被误匹配
+            sections_in_quotes = re.findall(r'"(.*?)"', line)
+            operator_in_string = False
+            for section in sections_in_quotes:
+                if operator_space.search(section):
+                    operator_in_string = True
+                    break
+            if not operator_in_string:
+                print "File: %s, line %d: [PUT SPACE AROUND OPERATORS]:\n%s" % \
+                      (filename, n, line)
+                err_cnt = err_cnt + 1
 
     # 我们希望/* Comments */而不是/*Comments*/
     if open_comment_space.search(line):
