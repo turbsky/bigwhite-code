@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+""" 
+    py-sp
+
+    A short-message service provider simulator, 
+    support CMPP2.0/2.1 and CMPP3.0 protocol.
+"""
+
+
+
+if __name__ == '__main__':
+    pass
