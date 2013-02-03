@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include "defer.h"
 
+int bar(int a, char *s) {
+    printf("a = [%d], s = [%s]\n", a, s);
+
+}
+
 int main() {
     FILE *fp = NULL;
     fp = fopen("main.c", "r");
@@ -12,6 +17,7 @@ int main() {
     if (!p) return;
     defer(free, 1, p);
     
+    defer(bar, 2, 13, "hello");
     return 0;
 }
 
