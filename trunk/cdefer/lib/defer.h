@@ -29,5 +29,6 @@ struct defer_func_ctx {
 
 void stack_push(struct defer_func_ctx *ctx);
 struct defer_func_ctx* stack_pop();
+int stack_top();
 
 #endif

@@ -4,57 +4,57 @@
 #include <string.h>
 #include "defer.h"
 
-extern struct defer_func_ctx ctx_stack[10];
-int stack_top = 0;
+struct defer_func_ctx ctx_stack[11];
+int top_of_stack = 0;
 
 void stack_push(struct defer_func_ctx *ctx) {
-    if (stack_top == 10) {
+    if (top_of_stack >= 11) {
         return;
     }
 
-    ctx_stack[stack_top] = *ctx;
-    stack_top++;
+    ctx_stack[top_of_stack] = *ctx;
+    top_of_stack++;
 }
 
 struct defer_func_ctx* stack_pop() {
-    if (stack_top == 0) {
+    if (top_of_stack == 0) {
         return NULL;
     }
 
-    stack_top--;
-    return &ctx_stack[stack_top];
+    top_of_stack--;
+    return &ctx_stack[top_of_stack];
 }
 
-void defer(defer_func fp, ...) {
+int stack_top() {
+    return top_of_stack;
+}
+
+void defer(defer_func fp, int arg_count, ...) {
     va_list ap;
-    va_list ap1; /* used to calculate the count of variant args */
-    va_start(ap, fp);
-    va_start(ap1, fp);
-
-    int count = 0;
-
-    while(va_arg(ap1, void*) != NULL) {
-        count++;
-    }
+    va_start(ap, arg_count);
 
     struct defer_func_ctx ctx;
     memset(&ctx, 0, sizeof(ctx));
-    ctx.params_count = count - 1;
+    ctx.params_count = arg_count;
+    printf("in defer: params count is [%d]\n", ctx.params_count);
 
-    if (count == 0) {
+    if (arg_count == 0) {
         ctx.ctx.zp.df = fp;
 
-    } else if (count == 1) {
+    } else if (arg_count == 1) {
         ctx.ctx.op.df = fp;
         ctx.ctx.op.p1 = va_arg(ap, void*);
 
-    } else if (count == 2) {
+    } else if (arg_count == 2) {
         ctx.ctx.tp.df = fp;
         ctx.ctx.tp.p1 = va_arg(ap, void*);
         ctx.ctx.tp.p2 = va_arg(ap, void*);
         ctx.ctx.tp.df(ctx.ctx.tp.p1, ctx.ctx.tp.p2);
     }
 
+    va_end(ap);
     stack_push(&ctx);
+    printf("defer push function: [%p]\n", fp);
+    printf("in defer: stack top is: [%d]\n", stack_top());
 }
 
