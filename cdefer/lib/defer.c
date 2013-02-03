@@ -4,11 +4,11 @@
 #include <string.h>
 #include "defer.h"
 
-struct defer_func_ctx ctx_stack[11];
-int top_of_stack = 0;
+struct defer_func_ctx ctx_stack[10];
+int top_of_stack = 0; /* stack top from 1 to 10 */
 
 void stack_push(struct defer_func_ctx *ctx) {
-    if (top_of_stack >= 11) {
+    if (top_of_stack >= 10) {
         return;
     }
 
