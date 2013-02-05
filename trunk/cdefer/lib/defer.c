@@ -7,7 +7,9 @@
 struct defer_func_ctx ctx_stack[10];
 int top_of_stack = 0; /* stack top from 1 to 10 */
 
-void stack_push(struct defer_func_ctx *ctx) {
+void
+stack_push(struct defer_func_ctx *ctx) 
+{
     if (top_of_stack >= 10) {
         return;
     }
@@ -16,7 +18,9 @@ void stack_push(struct defer_func_ctx *ctx) {
     top_of_stack++;
 }
 
-struct defer_func_ctx* stack_pop() {
+struct defer_func_ctx* 
+stack_pop() 
+{
     if (top_of_stack == 0) {
         return NULL;
     }
@@ -25,11 +29,15 @@ struct defer_func_ctx* stack_pop() {
     return &ctx_stack[top_of_stack];
 }
 
-int stack_top() {
+int 
+stack_top() 
+{
     return top_of_stack;
 }
 
-void defer(defer_func fp, int arg_count, ...) {
+void 
+defer(defer_func fp, int arg_count, ...) 
+{
     va_list ap;
     va_start(ap, arg_count);
 
