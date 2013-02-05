@@ -2,12 +2,16 @@
 #include <stdlib.h>
 #include "defer.h"
 
-int bar(int a, char *s) {
+int
+bar(int a, char *s) 
+{
     printf("a = [%d], s = [%s]\n", a, s);
 
 }
 
-int main() {
+int
+main() 
+{
     FILE *fp = NULL;
     fp = fopen("main.c", "r");
     if (!fp) return;
