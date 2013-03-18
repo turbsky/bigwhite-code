@@ -31,7 +31,8 @@ main()
 
     errno = 0;
     char *p = NULL;
-    p = mmap(NULL, size, PROT_WRITE|PROT_READ, MAP_SHARED, fileno(fp), 0);
+    p = mmap(NULL, size, PROT_WRITE|PROT_READ, 
+             MAP_SHARED, fileno(fp), 0);
     if (p == MAP_FAILED) {
         printf("can not mmap file, error = %d\n", errno);
         fclose(fp);
@@ -44,7 +45,7 @@ main()
         return -1;
     }
 
-    /* round up to 8 */
+    /* round up to a multiple of 8 */
     while((int)p % 8 != 0) {
         p++;
     }
